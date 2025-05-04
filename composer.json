@@ -1,0 +1,26 @@
+{
+    "name": "callmeaf/social-bot",
+    "description": "Manage Social Bots",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Callmeaf\\SocialBot\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "callmeaf",
+            "email": "alikhoshkar2000@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Callmeaf\\SocialBot\\CallmeafSocialBotServiceProvider"
+            ]
+        }
+    }
+}
