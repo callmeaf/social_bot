@@ -9,6 +9,7 @@ use Callmeaf\Base\App\Traits\Model\HasType;
 use Callmeaf\Social\App\Enums\SocialType;
 use Callmeaf\Social\App\Repo\Contracts\SocialRepoInterface;
 use Callmeaf\Social\App\Strategy\Contracts\SocialBotConfig;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -44,6 +45,17 @@ class SocialBot extends BaseModel implements SocialBotConfig
          */
         $socialRepo = app(SocialRepoInterface::class);
         return $this->belongsTo($socialRepo->getModel()::class);
+    }
+
+    public function footer(): Attribute
+    {
+        return Attribute::get(function($value) {
+            return match ($this->social->type) {
+                SocialType::TELEGRAM => str($value)->replace('\n',"\n")->toString(),
+                SocialType::INSTAGRAM => $value,
+                SocialType::TWITTER => $value,
+            };
+        });
     }
 
     public function getToken(): string
