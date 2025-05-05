@@ -33,6 +33,7 @@ class SocialBotStoreRequest extends FormRequest
             'type' => ['required',new Enum(SocialBotType::class)],
             'name' => ['required','string'],
             'token' => ['required','string',Rule::unique($socialBotRepo->getTable(),'token')->where('type',$this->get('type'))],
+            'footer' => ['nullable','string'],
         ];
     }
 }

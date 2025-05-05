@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('type');
             $table->string('token');
             $table->string('name');
+            $table->text('footer')->nullable();
              $table->softDeletes();
             $table->timestamps();
         });
