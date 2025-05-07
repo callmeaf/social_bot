@@ -28,6 +28,7 @@ class SocialBotResource extends JsonResource
             'name' => $this->name,
             'token' => $this->token,
             'footer' => $this->footer,
+            'footer_text' => $this->footerText,
             'created_at' => $this->created_at,
             'created_at_text' => $this->createdAtText(),
             'updated_at' => $this->updated_at,

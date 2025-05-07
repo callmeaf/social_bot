@@ -48,7 +48,7 @@ class SocialBot extends BaseModel implements SocialBotConfig
         return $this->belongsTo($socialRepo->getModel()::class);
     }
 
-    public function footer(): Attribute
+    public function footerText(): Attribute
     {
         return Attribute::get(function($value) {
             return match ($this->social?->type) {
@@ -59,6 +59,7 @@ class SocialBot extends BaseModel implements SocialBotConfig
             };
         });
     }
+
 
     public function searchParams(): array
     {
