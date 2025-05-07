@@ -2,7 +2,9 @@
 
 namespace Callmeaf\SocialBot\App\Http\Requests\Admin\V1;
 
+use Callmeaf\SocialBot\App\Enums\SocialBotType;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\Enum;
 
 class SocialBotTypeUpdateRequest extends FormRequest
 {
@@ -22,7 +24,7 @@ class SocialBotTypeUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'type' => ['required',new Enum(SocialBotType::class)]
         ];
     }
 }
