@@ -4,6 +4,7 @@ namespace Callmeaf\SocialBot\App\Models;
 
 use Callmeaf\Base\App\Models\BaseModel;
 use Callmeaf\Base\App\Traits\Model\HasDate;
+use Callmeaf\Base\App\Traits\Model\HasSearch;
 use Callmeaf\Base\App\Traits\Model\HasStatus;
 use Callmeaf\Base\App\Traits\Model\HasType;
 use Callmeaf\Social\App\Enums\SocialType;
@@ -16,7 +17,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class SocialBot extends BaseModel implements SocialBotConfig
 {
      use SoftDeletes;
-    use HasStatus,HasType,HasDate;
+    use HasStatus,HasType,HasDate,HasSearch;
     protected $fillable = [
         'social_id',
         'status',
@@ -56,6 +57,19 @@ class SocialBot extends BaseModel implements SocialBotConfig
                 SocialType::TWITTER => $value,
             };
         });
+    }
+
+    public function searchParams(): array
+    {
+        return [
+            [
+                'name' => 'name',
+            ],
+            [
+                'created_from' => 'created_at',
+                'created_to' => 'created_at'
+            ]
+        ];
     }
 
     public function getToken(): string
