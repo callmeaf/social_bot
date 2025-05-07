@@ -51,10 +51,11 @@ class SocialBot extends BaseModel implements SocialBotConfig
     public function footer(): Attribute
     {
         return Attribute::get(function($value) {
-            return match ($this->social->type) {
+            return match ($this->social?->type) {
                 SocialType::TELEGRAM => str($value)->replace('\n',"\n")->toString(),
                 SocialType::INSTAGRAM => $value,
                 SocialType::TWITTER => $value,
+                default => ''
             };
         });
     }
@@ -79,13 +80,14 @@ class SocialBot extends BaseModel implements SocialBotConfig
 
     public function getApiUrl(): string
     {
-        return match($this->social->type) {
+        return match($this->social?->type) {
           SocialType::TELEGRAM => "https://api.telegram.org/bot",
+            default => '',
         };
     }
 
     public function getChatId(): string
     {
-        return "@" . $this->social->chat_id;
+        return "@" . $this->social?->chat_id;
     }
 }
