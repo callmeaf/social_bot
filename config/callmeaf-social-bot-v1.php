@@ -137,7 +137,9 @@ return [
         RequestType::API->value => [
             'prefix' => 'social_bots',
             'as' => 'social_bots.',
-            'middleware' => [],
+            'middleware' => [
+                'auth:sanctum'
+            ],
         ],
         RequestType::WEB->value => [
             'prefix' => 'social_bots',
