@@ -50,7 +50,8 @@ class SocialBot extends BaseModel implements SocialBotConfig
 
     public function footerText(): Attribute
     {
-        return Attribute::get(function($value) {
+        return Attribute::get(function() {
+            $value = $this->footer;
             return match ($this->social?->type) {
                 SocialType::TELEGRAM => str($value)->replace('\n',"\n")->toString(),
                 SocialType::INSTAGRAM => $value,
